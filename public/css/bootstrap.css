@@ -1483,13 +1483,13 @@ fieldset:disabled a.btn {
 }
 
 .btn-success {
-    color: #212529;
+    color: var(--white);
     background-color: #43DA86;
     border-color: #43DA86;
 }
 
 .btn-success:hover {
-    color: #fff;
+    color: var(--white);
     background-color: #29ce72;
     border-color: #26c46c;
 }

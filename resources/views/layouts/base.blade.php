@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,31 +15,9 @@
 </head>
 <body>
 <div class="d-flex w-100 h-100 flex-column">
-    <header class="masthead mb-auto bg-white shadow-sm" style="z-index:1">
+    <header class="masthead {{ ($mb == true) ? __('mb-auto') : null }} bg-white shadow-sm" style="z-index:1">
         <div class="container p-1" style="max-width: 80%">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{{route('home')}}">
-                    <h4><span class="text-primary font-weight-bold">Quote</span>
-                        <span class="text-black-50">Sharing</span>
-                        <i class="fas fa-pen-fancy ml-1 text-primary"></i>
-                    </h4>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-                        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active" style="font-size: 16px;">
-                            <a href="quotes" class="nav-link text-black-50">Les citations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('inscription')}}" class="btn btn-primary">Mon compte</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            @include('partials.nav')
         </div>
     </header>
     @yield('content')

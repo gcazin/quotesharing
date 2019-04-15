@@ -1,6 +1,4 @@
-<?php
-?>
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -18,59 +16,25 @@
 <body>
 <div class="cover-container d-flex w-100 h-100 p-1 mx-auto flex-column">
     <header class="masthead mb-auto">
-        <div class="inner">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <h4><span class="text-primary font-weight-bold">Quote</span>
-                        <span class="text-black-50">Sharing</span>
-                        <i class="fas fa-pen-fancy ml-1 text-primary"></i>
-                    </h4>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-                        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active" style="font-size: 16px;">
-                            <a href="quotes" class="nav-link text-black-50">Les citations</a>
-                        </li>
-                        @if(Auth::check())
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    {{ __(Auth::user()->username) }}
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('logout') }}">Déconnexion</a>
-                                </div>
-                            </div>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('connexion') }}" class="nav-link">Connexion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('inscription') }}" class="btn btn-primary">Inscription</a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </nav>
-        </div>
+        @include('partials.nav')
     </header>
 
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <h2 class="mb-4">Première plateforme collaborative de partage de citations!</h2>
+                @if(!\Illuminate\Support\Facades\Auth::check())
                 <p class="lead">Inscris-toi sans plus attendre pour montrer ton talent d'écriture!</p>
                 <form method="post" action="home.blade.php" class="form-inline">
                     <input type="email" class="form-control w-50" placeholder="Adresse e-mail" required>
                     <button type="submit" class="btn btn-primary ml-2">Commencer</button>
                 </form>
+                @else
+                    <p class="lead">Connecté en tant que <span class="font-weight-bolder">{{\Illuminate\Support\Facades\Auth::user()->username}}</span></p>
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary">Accéder au tableau de bord</a>
+                @endif
             </div>
-            <div class="col-lg-6 text-center">
+            <div class="col-sm-6 text-center">
                 <img width="70%" src="img/quote.svg">
             </div>
         </div>

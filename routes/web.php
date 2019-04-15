@@ -11,6 +11,7 @@
 |
 */
 
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,19 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::namespace('Auth')->group(function() {
     Route::get('/inscription', 'RegisterController@index')->name('inscription');
     Route::get('/connexion', 'LoginController@index')->name('connexion');
+    Route::get('/dashboard', 'UserController@index')->name('dashboard');
+    Route::get('/update', 'UserController@update')->name('update');
+    Route::post('/update-avatar', 'UserController@update_avatar')->name('update.avatar');
+    Route::post('/update-info', 'UserController@update_info')->name('update.info');
+});
+
+Route::namespace('Post')->group(function() {
+    Route::post('/dashboard', 'PostController@publish')->name('post.publish');
+    Route::get('/citations', 'QuoteController@index')->name('citations');
+});
+
+Route::namespace('Admin')->group(function() {
+   Route::get('/admin', 'AdminController@index')->name('admin');
 });
 
 // Authentication Routes...
