@@ -17,4 +17,9 @@ class Post extends Model
         'id'
     ];
 
+    public function retrieveUser()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

@@ -12,6 +12,7 @@
                         Publié le {{ \Carbon\Carbon::parse($quote->created_at)->format('d/m/Y') }}
                         à {{ \Carbon\Carbon::parse($quote->created_at)->timezone('Europe/Paris')->format('H:i:s') }}
                     </small>
+                    <small>- Publié par {{ \App\User::find($quote->idUser)->retrieveUser->username }}</small>
                 </div>
             </div>
         @endforeach
