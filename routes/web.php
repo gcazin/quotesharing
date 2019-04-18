@@ -11,7 +11,8 @@
 |
 */
 
-use App\Post;
+use App\Quote;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +24,17 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::namespace('Auth')->group(function() {
     Route::get('/inscription', 'RegisterController@index')->name('inscription');
     Route::get('/connexion', 'LoginController@index')->name('connexion');
-    Route::get('/dashboard', 'UserController@index')->name('dashboard');
+    Route::get('/user', 'UserController@index')->name('user');
     Route::get('/update', 'UserController@update')->name('update');
     Route::post('/update-avatar', 'UserController@update_avatar')->name('update.avatar');
     Route::post('/update-info', 'UserController@update_info')->name('update.info');
+    Route::get('/profil/{user}', 'UserController@profil')->name('profil');
 });
 
-Route::namespace('Post')->group(function() {
-    Route::post('/dashboard', 'PostController@publish')->name('post.publish');
+Route::namespace('Quote')->group(function() {
+    Route::post('/user', 'QuoteController@publish')->name('post.publish');
     Route::get('/citations', 'QuoteController@index')->name('citations');
+    Route::delete('/citations/destroy/{quote}', 'QuoteController@destroy')->name('destroy');
 });
 
 Route::namespace('Admin')->group(function() {

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
 
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/user';
 
     public function __construct ()
     {

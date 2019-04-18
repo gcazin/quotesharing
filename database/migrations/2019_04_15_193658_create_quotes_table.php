@@ -14,10 +14,16 @@ class CreateQuotesTable extends Migration
     public function up()
     {
         Schema::create('quotes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('quotes');
-            $table->foreign('id')->references('id')->on('users');
+            $table->integerIncrements('id');
+            $table->string('quote');
+            $table->integer('user_id')->index()->unsigned();
+            $table->integer('category_id')->index()->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('quotes', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

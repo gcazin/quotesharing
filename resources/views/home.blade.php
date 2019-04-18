@@ -31,7 +31,7 @@
                 </form>
                 @else
                     <p class="lead">Connecté en tant que <span class="font-weight-bolder">{{\Illuminate\Support\Facades\Auth::user()->username}}</span></p>
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary">Accéder au tableau de bord</a>
+                    <a href="{{ route('profil', \Illuminate\Support\Facades\Auth::user()->id) }}" class="btn btn-primary">Accéder au tableau de bord</a>
                 @endif
             </div>
             <div class="col-sm-6 text-center">

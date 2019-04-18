@@ -77,7 +77,7 @@ return [
         ],
         'quotes' => [
             'driver' => 'eloquent',
-            'model' => App\Post::class
+            'model' => App\Quote::class
         ],
         'admins' => [
             'driver' => 'eloquent',

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -30,13 +28,18 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('dashboard.index',compact('user', $user));
+        return view('user.index',compact('user', $user));
+    }
+
+    public function profil(User $user)
+    {
+        return view('user.profil', compact('user', $user));
     }
 
     public function update()
     {
         $user = Auth::user();
-        return view('dashboard.update',compact('user', $user));
+        return view('user.update',compact('user', $user));
     }
 
     public function update_avatar(Request $request)
@@ -63,6 +66,7 @@ class UserController extends Controller
     public function update_info(Request $request)
     {
         $data = $request->validate([
+            'username' => 'string|max:25',
             'last_name' => 'string|max:25',
             'first_name' => 'string|max:25',
             'email' => 'string|email|max:255'
@@ -70,6 +74,7 @@ class UserController extends Controller
 
         $user = Auth::user();
 
+        $user->username = $data['username'];
         $user->last_name = $data['last_name'];
         $user->first_name = $data['first_name'];
         $user->email = $data['email'];

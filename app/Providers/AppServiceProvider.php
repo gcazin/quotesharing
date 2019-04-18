@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Quote;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Register any application services.
      *
@@ -13,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        setLocale(LC_TIME, $this->app->getLocale());
     }
 
     /**
@@ -23,6 +28,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }
